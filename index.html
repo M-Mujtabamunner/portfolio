@@ -15,25 +15,26 @@
 
         :root {
             --bg-deep: #000000;
-            --accent-white: #ffffff;
-            --blue-glow: #3b82f6;
+            --accent-primary: #ffffff;
+            --blue-highlight: #3b82f6;
         }
 
         body {
             background-color: var(--bg-deep);
-            color: var(--accent-white);
+            color: var(--accent-primary);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             cursor: none; 
         }
 
-        /* --- ADAM HARTWIG TITLE ANIMATION CORE --- */
+        /* Adam Hartwig Animation Core */
         .char {
             display: inline-block;
-            transform: translateY(115%) rotateX(-90deg) scale(0.5);
+            transform: translateY(115%) rotateX(-90deg) scale(0.6);
             transform-origin: top;
             opacity: 0;
-            filter: blur(10px);
+            filter: blur(12px);
+            transition: color 0.3s;
         }
 
         .display-font {
@@ -46,7 +47,7 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* --- CURSOR SYSTEM --- */
+        /* Custom Cursor */
         #cursor-dot {
             position: fixed;
             width: 8px;
@@ -60,8 +61,8 @@
 
         #cursor-outline {
             position: fixed;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border: 1px solid rgba(255,255,255,0.3);
             border-radius: 50%;
             pointer-events: none;
@@ -69,7 +70,7 @@
             transition: width 0.3s, height 0.3s, background 0.3s;
         }
 
-        /* --- BACKGROUND GRID --- */
+        /* Grid Background Interaction */
         .grid-line {
             position: absolute;
             background: rgba(255,255,255,0.04);
@@ -80,8 +81,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            height: 3px;
-            background: var(--blue-glow);
+            height: 4px;
+            background: linear-gradient(to right, #3b82f6, #fff);
             z-index: 10001;
             width: 0%;
         }
@@ -100,7 +101,7 @@
 
         .marquee-content {
             display: inline-block;
-            animation: marquee 30s linear infinite;
+            animation: marquee 35s linear infinite;
         }
 
         @keyframes marquee {
@@ -108,25 +109,30 @@
             100% { transform: translateX(-50%); }
         }
 
-        .project-row:hover .project-preview {
-            opacity: 1;
-            transform: translate(-10%, -50%) scale(1) rotate(3deg);
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .project-preview {
+        .project-row:hover .project-image {
+            opacity: 0.8;
+            transform: scale(1) rotate(2deg);
+        }
+
+        .project-image {
             position: absolute;
-            right: 10%;
+            right: 15%;
             top: 50%;
-            width: 300px;
-            height: 180px;
-            background: #111;
-            border-radius: 12px;
+            transform: translateY(-50%) scale(0.8) rotate(0deg);
+            width: 350px;
+            height: 220px;
             opacity: 0;
-            transform: translate(0, -50%) scale(0.8) rotate(0deg);
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             pointer-events: none;
-            overflow: hidden;
-            z-index: 5;
+            z-index: 1;
+            object-fit: cover;
+            border-radius: 12px;
         }
     </style>
 </head>
@@ -142,67 +148,96 @@
         
         <nav class="fixed top-0 w-full z-[100] p-10 flex justify-between items-start mix-blend-difference">
             <div class="display-font text-2xl font-black leading-none tracking-tighter">
-                MUJTABA<br/><span class="text-[9px] mono font-normal opacity-50 tracking-widest">PORTFOLIO_v2</span>
+                MUJTABA<br/><span class="text-[9px] mono font-normal opacity-50 tracking-[0.4em]">ARCHITECT_SYS</span>
             </div>
-            <div class="flex gap-8 mono text-[10px] uppercase tracking-widest">
-                <a href="https://github.com/M-Mujtabamunner" target="_blank" class="hover:text-blue-500 transition-colors">GitHub</a>
-                <a href="https://x.com/Mujtaba_Muneer_" target="_blank" class="hover:text-blue-500 transition-colors">Twitter</a>
+            <div class="flex flex-col items-end gap-3 mono text-[10px] uppercase tracking-[0.4em]">
+                <a href="https://github.com/M-Mujtabamunner" target="_blank" class="hover:text-blue-500 transition-colors">/GitHub</a>
+                <a href="https://x.com/Mujtaba_Muneer_" target="_blank" class="hover:text-blue-500 transition-colors">/Twitter_X</a>
+                <a href="#contact" class="hover:text-blue-500 transition-colors">/Contact</a>
             </div>
         </nav>
 
-        <section class="min-h-screen flex flex-col justify-center px-8 md:px-24">
-            <div class="mono text-[10px] mb-8 opacity-40 uppercase tracking-[0.8em] reveal-text">Architecting Neural Ecosystems</div>
+        <section class="h-screen flex flex-col justify-center px-8 md:px-24">
+            <div class="mono text-[10px] mb-8 opacity-40 uppercase tracking-[0.8em] reveal-text">Digital Artisan & AI Engineer</div>
             
-            <h1 class="display-font text-[12vw] font-black leading-[0.8] mb-12" id="hero-title">
-                <div class="line">ELASTIC</div>
-                <div class="line text-outline">NEURAL</div>
-                <div class="line">SYSTEMS.</div>
+            <h1 class="display-font text-[11vw] font-black leading-[0.8] mb-12" id="hero-title">
+                <div class="stagger-line">BUILDING</div>
+                <div class="stagger-line text-outline">SKELETONS</div>
+                <div class="stagger-line">OF AI MIND.</div>
             </h1>
 
-            <div class="max-w-xl mono text-[11px] leading-relaxed opacity-50 reveal-text">
-                Fullstack Developer specializing in AI automation and high-fidelity digital experiences. I transform complex logic into fluid, interactive interfaces.
+            <div class="flex flex-col md:flex-row justify-between items-end gap-16">
+                <div class="max-w-xl mono text-[12px] leading-loose opacity-60 reveal-text">
+                    Mujtaba is a digital artisan building at the intersection of high-performance fullstack engineering and neural automation. Focused on "Digital Silk"—interfaces that feel as fluid as they are functional.
+                </div>
+                <div class="flex gap-12 text-[10px] mono uppercase tracking-widest reveal-text">
+                    <div class="w-16 h-[1px] bg-white opacity-20 mb-2"></div>
+                    <span>Based in Pakistan<br/>Available Globally</span>
+                </div>
             </div>
         </section>
 
-        <div class="marquee-container py-8 transform -rotate-2">
-            <div class="marquee-content display-font text-6xl font-black flex gap-16">
-                <span>AI AUTOMATION</span> <span>FULLSTACK ARCHITECTURE</span> <span>NEURAL CORE</span> <span>SCALABLE SYSTEMS</span> <span>AI AUTOMATION</span> <span>FULLSTACK ARCHITECTURE</span> <span>NEURAL CORE</span> <span>SCALABLE SYSTEMS</span>
+        <div class="marquee-container py-10 transform -rotate-1">
+            <div class="marquee-content display-font text-6xl md:text-8xl font-black flex gap-12">
+                <span>AI AUTOMATION</span> • <span>FULLSTACK ARCHITECTURE</span> • <span>NEURAL CORE</span> • <span>UNREAL DESIGN</span> • <span>AI AUTOMATION</span> • <span>FULLSTACK ARCHITECTURE</span> • <span>NEURAL CORE</span> • <span>UNREAL DESIGN</span>
             </div>
         </div>
 
-        <section class="px-8 md:px-24 py-40">
-            <div class="flex items-baseline gap-4 mb-20 reveal-text">
-                <span class="mono text-4xl opacity-10">/01</span>
-                <h2 class="display-font text-7xl font-black">PROJECTS</h2>
+        <section class="px-8 md:px-24 py-48">
+            <div class="flex items-baseline gap-6 mb-32 reveal-text">
+                <span class="mono text-5xl opacity-10">/01</span>
+                <h2 class="display-font text-8xl font-black">WORK</h2>
             </div>
 
-            <div class="space-y-2">
-                <div class="project-row group py-20 border-t border-white/10 relative cursor-pointer overflow-hidden" onclick="window.open('https://defyscale.com', '_blank')">
-                    <div class="flex flex-col md:flex-row justify-between items-center relative z-10 transition-all duration-500 group-hover:px-10">
+            <div class="space-y-0 border-b border-white/10">
+                <div class="project-row group py-24 border-t border-white/10 relative cursor-pointer overflow-hidden" onclick="window.open('https://defyscale.com', '_blank')">
+                    <div class="flex flex-col md:flex-row justify-between items-center relative z-10 transition-all duration-700 group-hover:translate-x-6">
                         <h3 class="display-font text-5xl md:text-8xl font-bold tracking-tighter">DEFYSCALE</h3>
-                        <p class="mono text-[10px] opacity-30 group-hover:opacity-100 uppercase tracking-widest">Automation SaaS</p>
+                        <div class="flex items-center gap-8 mt-6 md:mt-0">
+                            <p class="mono text-[10px] opacity-30 group-hover:opacity-100 uppercase tracking-widest">Automation Eco-system</p>
+                            <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                                <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="project-preview shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400" class="w-full h-full object-cover">
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800" class="project-image grayscale">
                 </div>
-                
-                <div class="project-row group py-20 border-t border-b border-white/10 relative cursor-pointer overflow-hidden">
-                    <div class="flex flex-col md:flex-row justify-between items-center relative z-10 transition-all duration-500 group-hover:px-10">
-                        <h3 class="display-font text-5xl md:text-8xl font-bold tracking-tighter opacity-20 group-hover:opacity-100">NEURAL.IO</h3>
-                        <p class="mono text-[10px] opacity-30 group-hover:opacity-100 uppercase tracking-widest">Data Visualization</p>
+
+                <div class="project-row group py-24 border-t border-white/10 relative cursor-pointer overflow-hidden">
+                    <div class="flex flex-col md:flex-row justify-between items-center relative z-10 transition-all duration-700 group-hover:translate-x-6">
+                        <h3 class="display-font text-5xl md:text-8xl font-bold tracking-tighter opacity-20 group-hover:opacity-100">NEURALCORE</h3>
+                        <div class="flex items-center gap-8 mt-6 md:mt-0">
+                            <p class="mono text-[10px] opacity-30 group-hover:opacity-100 uppercase tracking-widest">AI Intelligence</p>
+                            <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                                <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer class="h-screen flex flex-col justify-center items-center px-8 text-center">
-            <h2 class="display-font text-[10vw] font-black leading-none mb-12 reveal-text">LET'S <span class="text-outline">BUILD.</span></h2>
-            <a href="mailto:hello@mujtaba.dev" class="display-font text-3xl md:text-5xl hover:text-blue-500 transition-all magnetic-wrap">HELLO@MUJTABA.DEV</a>
+        <footer id="contact" class="min-h-screen flex flex-col justify-end px-8 md:px-24 pb-16">
+            <div class="mb-40">
+                <span class="mono text-blue-500 text-xs mb-8 block tracking-[0.8em]">SIGNAL_START</span>
+                <h2 class="display-font text-[12vw] font-black leading-none reveal-text">DIRECT <span class="text-outline">LINK.</span></h2>
+            </div>
             
-            <div class="mt-40 flex gap-10 mono text-[10px] opacity-30">
-                <span>© 2026 MUJTABA MUNEER</span>
-                <span>LOCATED IN PAKISTAN</span>
+            <div class="grid md:grid-cols-3 gap-20 items-end">
+                <div class="md:col-span-2">
+                    <a href="mailto:hello@mujtaba.dev" class="display-font text-3xl md:text-6xl hover:text-blue-500 transition-all break-all italic underline">HELLO@MUJTABA.DEV</a>
+                </div>
+                <div class="space-y-6 mono text-[10px] uppercase tracking-[0.5em]">
+                    <div class="opacity-20 mb-4">Ecosystem</div>
+                    <a href="https://github.com/M-Mujtabamunner" target="_blank" class="block hover:text-blue-500">/GitHub_Repository</a>
+                    <a href="https://x.com/Mujtaba_Muneer_" target="_blank" class="block hover:text-blue-500">/Twitter_Protocol</a>
+                    <a href="#" class="block hover:text-blue-500">/LinkedIn_Network</a>
+                </div>
+            </div>
+
+            <div class="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between mono text-[9px] opacity-20 tracking-widest">
+                <span>© 2026 MUJTABA MUNEER • ALL RIGHTS RESERVED</span>
+                <span>DATA ENCRYPTED BY NEURAL CORE v2.0</span>
             </div>
         </footer>
 
@@ -214,49 +249,46 @@
         // --- Custom Cursor Logic ---
         const dot = document.getElementById('cursor-dot');
         const outline = document.getElementById('cursor-outline');
-        
         document.addEventListener('mousemove', (e) => {
             gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0 });
-            gsap.to(outline, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15 });
+            gsap.to(outline, { x: e.clientX - 22, y: e.clientY - 22, duration: 0.2 });
         });
 
-        // --- Adam Hartwig Title Animation ---
-        const heroTitle = document.getElementById('hero-title');
-        const lines = heroTitle.querySelectorAll('.line');
-        
-        lines.forEach(line => {
-            const text = line.innerText;
-            line.innerHTML = text.split('').map(char => 
-                `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`
-            ).join('');
-        });
-
-        window.addEventListener('load', () => {
-            gsap.timeline()
-                .to('.char', {
-                    y: 0, rotateX: 0, scale: 1, opacity: 1, filter: 'blur(0px)',
-                    stagger: 0.04, duration: 1.5, ease: "expo.out"
-                })
-                .from('.reveal-text', {
-                    opacity: 0, y: 30, duration: 1, stagger: 0.2, ease: "power3.out"
-                }, "-=1");
-        });
-
-        // --- Grid Background ---
+        // --- Physics Grid Background ---
         const gridBg = document.getElementById('grid-bg');
-        for(let i=0; i<=12; i++) {
+        const count = 15;
+        for(let i=0; i<=count; i++) {
             const hLine = document.createElement('div');
             hLine.className = 'grid-line w-full h-[1px]';
-            hLine.style.top = `${(i/12)*100}%`;
+            hLine.style.top = `${(i/count)*100}%`;
             gridBg.appendChild(hLine);
 
             const vLine = document.createElement('div');
             vLine.className = 'grid-line w-[1px] h-full';
-            vLine.style.left = `${(i/12)*100}%`;
+            vLine.style.left = `${(i/count)*100}%`;
             gridBg.appendChild(vLine);
         }
 
-        // --- Scroll Tracking ---
+        // --- Adam Hartwig Liquid Animation ---
+        const heroTitle = document.getElementById('hero-title');
+        const lines = heroTitle.querySelectorAll('.stagger-line');
+        lines.forEach(line => {
+            const text = line.innerText;
+            line.innerHTML = text.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+        });
+
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+            tl.to('.char', {
+                y: 0, rotateX: 0, scale: 1, opacity: 1, filter: 'blur(0px)',
+                stagger: 0.04, duration: 1.8, ease: "expo.out"
+            })
+            .from('.reveal-text', {
+                opacity: 0, y: 50, duration: 1.5, stagger: 0.2, ease: "power4.out"
+            }, "-=1.4");
+        });
+
+        // --- Scroll Tracking & Progress ---
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -264,26 +296,24 @@
             document.getElementById("progress-bar").style.width = scrolled + "%";
         });
 
-        // --- UI Interactions ---
+        // --- Mouse Hover Interactions ---
         document.querySelectorAll('a, .project-row').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                gsap.to(outline, { scale: 2, background: 'rgba(255,255,255,0.1)', borderColor: 'transparent' });
+                gsap.to(outline, { scale: 1.8, background: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.8)' });
             });
             el.addEventListener('mouseleave', () => {
                 gsap.to(outline, { scale: 1, background: 'transparent', borderColor: 'rgba(255,255,255,0.3)' });
             });
         });
 
-        // --- Magnetic Buttons ---
-        document.querySelectorAll('.magnetic-wrap').forEach(el => {
-            el.addEventListener('mousemove', (e) => {
-                const rect = el.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                gsap.to(el, { x: x * 0.4, y: y * 0.4, duration: 0.4 });
-            });
-            el.addEventListener('mouseleave', () => {
-                gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+        // Reveal animations on scroll
+        gsap.utils.toArray('.reveal-text').forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 95%",
+                },
+                opacity: 0, y: 40, duration: 1.5, ease: "expo.out"
             });
         });
     </script>
