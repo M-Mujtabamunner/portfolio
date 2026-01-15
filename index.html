@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUJTABA MUNEER | Fullstack Architect & AI Specialist</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --bg-deep: #000000;
+            --accent-white: #ffffff;
+            --blue-glow: #3b82f6;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--accent-white);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            cursor: none; 
+        }
+
+        /* --- ADAM HARTWIG TITLE ANIMATION CORE --- */
+        .char {
+            display: inline-block;
+            transform: translateY(115%) rotateX(-90deg) scale(0.5);
+            transform-origin: top;
+            opacity: 0;
+            filter: blur(10px);
+        }
+
+        .display-font {
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* --- CURSOR SYSTEM --- */
+        #cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-outline {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s, background 0.3s;
+        }
+
+        /* --- BACKGROUND GRID --- */
+        .grid-line {
+            position: absolute;
+            background: rgba(255,255,255,0.04);
+            pointer-events: none;
+        }
+
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--blue-glow);
+            z-index: 10001;
+            width: 0%;
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1.5px #fff;
+            color: transparent;
+        }
+
+        .marquee-container {
+            background: #fff;
+            color: #000;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .project-row:hover .project-preview {
+            opacity: 1;
+            transform: translate(-10%, -50%) scale(1) rotate(3deg);
+        }
+
+        .project-preview {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            width: 300px;
+            height: 180px;
+            background: #111;
+            border-radius: 12px;
+            opacity: 0;
+            transform: translate(0, -50%) scale(0.8) rotate(0deg);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <div id="grid-bg" class="fixed inset-0 z-[-1] overflow-hidden"></div>
+
+    <main id="main-content">
+        
+        <nav class="fixed top-0 w-full z-[100] p-10 flex justify-between items-start mix-blend-difference">
+            <div class="display-font text-2xl font-black leading-none tracking-tighter">
+                MUJTABA<br/><span class="text-[9px] mono font-normal opacity-50 tracking-widest">PORTFOLIO_v2</span>
+            </div>
+            <div class="flex gap-8 mono text-[10px] uppercase tracking-widest">
+                <a href="https://github.com/M-Mujtabamunner" target="_blank" class="hover:text-blue-500 transition-colors">GitHub</a>
+                <a href="https://x.com/Mujtaba_Muneer_" target="_blank" class="hover:text-blue-500 transition-colors">Twitter</a>
+            </div>
+        </nav>
+
+        <section class="min-h-screen flex flex-col justify-center px-8 md:px-24">
+            <div class="mono text-[10px] mb-8 opacity-40 uppercase tracking-[0.8em] reveal-text">Architecting Neural Ecosystems</div>
+            
+            <h1 class="display-font text-[12vw] font-black leading-[0.8] mb-12" id="hero-title">
+                <div class="line">ELASTIC</div>
+                <div class="line text-outline">NEURAL</div>
+                <div class="line">SYSTEMS.</div>
+            </h1>
+
+            <div class="max-w-xl mono text-[11px] leading-relaxed opacity-50 reveal-text">
+                Fullstack Developer specializing in AI automation and high-fidelity digital experiences. I transform complex logic into fluid, interactive interfaces.
+            </div>
+        </section>
+
+        <div class="marquee-container py-8 transform -rotate-2">
+            <div class="marquee-content display-font text-6xl font-black flex gap-16">
+                <span>AI AUTOMATION</span> <span>FULLSTACK ARCHITECTURE</span> <span>NEURAL CORE</span> <span>SCALABLE SYSTEMS</span> <span>AI AUTOMATION</span> <span>FULLSTACK ARCHITECTURE</span> <span>NEURAL CORE</span> <span>SCALABLE SYSTEMS</span>
+            </div>
+        </div>
+
+        <section class="px-8 md:px-24 py-40">
+            <div class="flex items-baseline gap-4 mb-20 reveal-text">
+                <span class="mono text-4xl opacity-10">/01</span>
+                <h2 class="display-font text-7xl font-black">PROJECTS</h2>
+            </div>
+
+            <div class="space-y-2">
+                <div class="project-row group py-20 border-t border-white/10 relative cursor-pointer overflow-hidden" onclick="window.open('https://defyscale.com', '_blank')">
+                    <div class="flex flex-col md:flex-row justify-between items-center relative z-10 transition-all duration-500 group-hover:px-10">
+                        <h3 class="display-font text-5xl md:text-8xl font-bold tracking-tighter">DEFYSCALE</h3>
+                        <p class="mono text-[10px] opacity-30 group-hover:opacity-100 uppercase tracking-widest">Automation SaaS</p>
+                    </div>
+                    <div class="project-preview shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="project-row group py-20 border-t border-b border-white/10 relative cursor-pointer overflow-hidden">
+                    <div class="flex flex-col md:flex-row justify-between items-center relative z-10 transition-all duration-500 group-hover:px-10">
+                        <h3 class="display-font text-5xl md:text-8xl font-bold tracking-tighter opacity-20 group-hover:opacity-100">NEURAL.IO</h3>
+                        <p class="mono text-[10px] opacity-30 group-hover:opacity-100 uppercase tracking-widest">Data Visualization</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="h-screen flex flex-col justify-center items-center px-8 text-center">
+            <h2 class="display-font text-[10vw] font-black leading-none mb-12 reveal-text">LET'S <span class="text-outline">BUILD.</span></h2>
+            <a href="mailto:hello@mujtaba.dev" class="display-font text-3xl md:text-5xl hover:text-blue-500 transition-all magnetic-wrap">HELLO@MUJTABA.DEV</a>
+            
+            <div class="mt-40 flex gap-10 mono text-[10px] opacity-30">
+                <span>© 2026 MUJTABA MUNEER</span>
+                <span>LOCATED IN PAKISTAN</span>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- Custom Cursor Logic ---
+        const dot = document.getElementById('cursor-dot');
+        const outline = document.getElementById('cursor-outline');
+        
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0 });
+            gsap.to(outline, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15 });
+        });
+
+        // --- Adam Hartwig Title Animation ---
+        const heroTitle = document.getElementById('hero-title');
+        const lines = heroTitle.querySelectorAll('.line');
+        
+        lines.forEach(line => {
+            const text = line.innerText;
+            line.innerHTML = text.split('').map(char => 
+                `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`
+            ).join('');
+        });
+
+        window.addEventListener('load', () => {
+            gsap.timeline()
+                .to('.char', {
+                    y: 0, rotateX: 0, scale: 1, opacity: 1, filter: 'blur(0px)',
+                    stagger: 0.04, duration: 1.5, ease: "expo.out"
+                })
+                .from('.reveal-text', {
+                    opacity: 0, y: 30, duration: 1, stagger: 0.2, ease: "power3.out"
+                }, "-=1");
+        });
+
+        // --- Grid Background ---
+        const gridBg = document.getElementById('grid-bg');
+        for(let i=0; i<=12; i++) {
+            const hLine = document.createElement('div');
+            hLine.className = 'grid-line w-full h-[1px]';
+            hLine.style.top = `${(i/12)*100}%`;
+            gridBg.appendChild(hLine);
+
+            const vLine = document.createElement('div');
+            vLine.className = 'grid-line w-[1px] h-full';
+            vLine.style.left = `${(i/12)*100}%`;
+            gridBg.appendChild(vLine);
+        }
+
+        // --- Scroll Tracking ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        });
+
+        // --- UI Interactions ---
+        document.querySelectorAll('a, .project-row').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(outline, { scale: 2, background: 'rgba(255,255,255,0.1)', borderColor: 'transparent' });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(outline, { scale: 1, background: 'transparent', borderColor: 'rgba(255,255,255,0.3)' });
+            });
+        });
+
+        // --- Magnetic Buttons ---
+        document.querySelectorAll('.magnetic-wrap').forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(el, { x: x * 0.4, y: y * 0.4, duration: 0.4 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.3)" });
+            });
+        });
+    </script>
+</body>
+</html>
